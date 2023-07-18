@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class RmSoftProjectApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(RmSoftProjectApplication.class, args);
 	}
 
