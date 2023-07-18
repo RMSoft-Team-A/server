@@ -1,6 +1,6 @@
 # [문어의 꿈] Back-END
 
-
+![KakaoTalk_Photo_2023-07-17-16-06-05 002.gif](..%2FUsers%2Fuser%2FDesktop%2FKakaoTalk_Photo_2023-07-17-16-06-05%20002.gif)
 ###   [feature branch workflow](https://gmlwjd9405.github.io/2017/10/27/how-to-collaborate-on-GitHub-1.html)에 따라 개발을 진행합니다
 
 1. git clone 명령으로 중앙 원격 저장소를 복제해 자신의 로컬 저장소를 만듭니다
