@@ -26,10 +26,12 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
         }
 
-        userService.signUp(userSignupDTO);
+        String email = userService.signUp(userSignupDTO);
 
         Map<String, String> response = new HashMap<>();
+        response.put("email", email);
         response.put("Success", "회원 가입에 성공했습니다.");
+
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
     @GetMapping("/{email}")
