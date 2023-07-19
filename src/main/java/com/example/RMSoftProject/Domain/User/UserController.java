@@ -45,6 +45,22 @@ public class UserController {
 
         return ResponseEntity.ok(user);
     }
+    @PostMapping("/login")
+    public ResponseEntity<Object> login(@RequestBody UserLoginDto userLoginDto) {
+        log.info("로그인");
+        User user = userService.login(userLoginDto);
+        if (user == null) {
+            Map<String, String> response = new HashMap<>();
+            response.put("Error", "로그인에 실패했습니다. 아이디와 비밀번호를 확인해주세요.");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+        }
+
+        // 로그인 성공 처리
+
+        Map<String, String> response = new HashMap<>();
+        response.put("Success", "로그인에 성공했습니다.");
+        return ResponseEntity.ok(response);
+    }
 
 
 

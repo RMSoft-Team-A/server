@@ -17,9 +17,9 @@ public class Squid {
 
     private Long id;
 
-    private String Level;
+    private int Level;
 
-    private String exp;
+    private int exp;
 
 
     @OneToOne
