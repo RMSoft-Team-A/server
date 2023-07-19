@@ -19,6 +19,8 @@ public class Squid {
 
     private String Level;
 
+    private String exp;
+
 
     @OneToOne
     @JoinColumn(name = "user_id")
