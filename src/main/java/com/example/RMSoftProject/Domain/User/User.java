@@ -2,6 +2,7 @@ package com.example.RMSoftProject.Domain.User;
 
 
 import com.example.RMSoftProject.Domain.Calendar.Calendar;
+import com.example.RMSoftProject.Domain.List.DoneList;
 import com.example.RMSoftProject.Domain.List.TodoList;
 import com.example.RMSoftProject.Domain.Squid.Squid;
 import jakarta.persistence.*;
@@ -32,6 +33,9 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<TodoList> todos;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<DoneList> doneLists;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Calendar calendar;
