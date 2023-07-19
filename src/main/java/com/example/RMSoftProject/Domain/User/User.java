@@ -4,14 +4,16 @@ package com.example.RMSoftProject.Domain.User;
 import com.example.RMSoftProject.Domain.List.TodoList;
 import com.example.RMSoftProject.Domain.Squid.Squid;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class User {
 
 
@@ -31,4 +33,6 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<TodoList> todos;
+
+
 }
