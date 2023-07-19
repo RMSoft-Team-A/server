@@ -9,13 +9,13 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
     private final UserRepository userRepository;
-    public void signUp(UserSignupDto userSignupDTO) {
+    public String signUp(UserSignupDto userSignupDTO) {
         User user = new User();
         user.setEmail(userSignupDTO.getEmail());
         user.setPassword(userSignupDTO.getPassword());
 
 
-        userRepository.save(user);
+        return userRepository.save(user).getEmail();
     }
     public boolean checkIfEmailExists(String email) {
         return userRepository.existsByEmail(email);
