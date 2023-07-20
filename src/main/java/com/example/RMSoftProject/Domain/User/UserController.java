@@ -77,6 +77,25 @@ public class UserController {
         }
     }
 
+    @PostMapping("/{email}/change-password")
+    public ResponseEntity<Object> changePassword(@PathVariable String email, @RequestBody ChangePasswordDto changePasswordDto) {
+        log.info("비밀번호 변경");
+        try {
+            userService.changePassword(email, changePasswordDto);
+            Map<String, String> response = new HashMap<>();
+            response.put("Success", "비밀번호 변경에 성공했습니다.");
+            return ResponseEntity.ok(response);
+        } catch (NoSuchElementException e) {
+            Map<String, String> response = new HashMap<>();
+            response.put("Error", "해당 사용자를 찾을 수 없습니다.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+        } catch (IncorrectPasswordException e) {
+            Map<String, String> response = new HashMap<>();
+            response.put("Error", "현재 비밀번호가 일치하지 않습니다.");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+        }
+    }
+
 
 
 

@@ -47,4 +47,19 @@ public class UserService {
         user.setEmail(newEmail);
         userRepository.save(user);
     }
+
+
+    public void changePassword(String email, ChangePasswordDto changePasswordDto) throws IncorrectPasswordException {
+        User user = userRepository.findByEmail(email);
+        if (user == null) {
+            throw new NoSuchElementException("User not found.");
+        }
+
+        if (!user.getPassword().equals(changePasswordDto.getCurrentPassword())) {
+            throw new IncorrectPasswordException("Incorrect current password.");
+        }
+
+        user.setPassword(changePasswordDto.getNewPassword());
+        userRepository.save(user);
+    }
 }
