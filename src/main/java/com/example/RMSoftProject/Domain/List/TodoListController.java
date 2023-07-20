@@ -42,5 +42,19 @@ public class TodoListController {
         }
     }
 
+    @DeleteMapping("/delete")
+    public ResponseEntity<Object> deleteTodoList(
+            @RequestBody TodoListDto todoListDto
+    ) {
+        try {
+            todoListService.deleteTodoList(todoListDto);
+            return ResponseEntity.ok("TodoList 삭제에 성공했습니다.");
+        } catch (NoSuchElementException e) {
+            Map<String, String> response = new HashMap<>();
+            response.put("Error", e.getMessage());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+        }
+    }
+
 
 }

@@ -48,7 +48,20 @@ public class TodoListService {
         todoListRepository.save(todoList);
     }
 
+    public void deleteTodoList(TodoListDto todoListDto) {
+        User user = userRepository.findByEmail(todoListDto.getEmail());
+        if (user == null) {
+            throw new NoSuchElementException("User not found.");
+        }
 
+        TodoList todoList = todoListRepository.findByTitle(todoListDto.getTitle());
+
+        if (!todoList.getUser().equals(user)) {
+            throw new IllegalArgumentException("You can only delete your own TodoList.");
+        }
+
+        todoListRepository.delete(todoList);
+    }
 
 
 
