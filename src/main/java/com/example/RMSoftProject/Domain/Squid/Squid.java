@@ -19,6 +19,8 @@ public class Squid {
 
     private int Level;
 
+    private String squidname;
+
     private int exp;
 
 

@@ -27,7 +27,7 @@ public class User {
 
     private String password;
 
-    private String squidname;
+
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Squid squid;
