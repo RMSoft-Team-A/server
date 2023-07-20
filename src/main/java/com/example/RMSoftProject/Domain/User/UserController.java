@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequiredArgsConstructor
@@ -62,6 +63,18 @@ public class UserController {
         Map<String, String> response = new HashMap<>();
         response.put("Success", "로그인에 성공했습니다.");
         return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/{email}/change-email")
+    public ResponseEntity<Object> changeEmail(@PathVariable String email, @RequestBody UserEmailDto userEmailDto) {
+        try {
+            userService.changeEmail(email, userEmailDto.getEmail());
+            return ResponseEntity.ok("이메일 변경에 성공했습니다.");
+        } catch (NoSuchElementException e) {
+            Map<String, String> response = new HashMap<>();
+            response.put("Error", e.getMessage());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+        }
     }
 
 

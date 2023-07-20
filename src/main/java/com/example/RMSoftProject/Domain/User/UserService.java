@@ -4,6 +4,8 @@ package com.example.RMSoftProject.Domain.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.NoSuchElementException;
+
 @Service
 @RequiredArgsConstructor
 public class UserService {
@@ -34,5 +36,15 @@ public class UserService {
             return user;
         }
         return null;
+    }
+
+    public void changeEmail(String currentEmail, String newEmail) {
+        User user = userRepository.findByEmail(currentEmail);
+        if (user == null) {
+            throw new NoSuchElementException("해당 사용자를 찾을 수 없습니다.");
+        }
+
+        user.setEmail(newEmail);
+        userRepository.save(user);
     }
 }
