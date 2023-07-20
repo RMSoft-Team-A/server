@@ -1,7 +1,6 @@
 package com.example.RMSoftProject.Domain.List;
 
 
-import com.example.RMSoftProject.Domain.Calendar.Calendar;
 import com.example.RMSoftProject.Domain.User.User;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -25,10 +24,6 @@ public class TodoList {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "calendar_id")
-    private Calendar calendar;
 
 
 }
