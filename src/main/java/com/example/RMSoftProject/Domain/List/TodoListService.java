@@ -31,6 +31,25 @@ public class TodoListService {
         todoList.setDate(formattedDate);
         todoListRepository.save(todoList);
     }
+    public void updateTodoListTitle(TodoListDto todoListDto) {
+        User user = userRepository.findByEmail(todoListDto.getEmail());
+        if (user == null) {
+            throw new NoSuchElementException("User not found.");
+        }
+
+        TodoList todoList = todoListRepository.findByTitle(todoListDto.getTitle());
+
+
+        if (!todoList.getUser().equals(user)) {
+            throw new IllegalArgumentException("You can only update your own TodoList.");
+        }
+
+        todoList.setTitle(todoListDto.getTitle());
+        todoListRepository.save(todoList);
+    }
+
+
+
 
 
 

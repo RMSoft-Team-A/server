@@ -7,5 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class TodoListDto {
+    private String email;
+    private String currentTitle;
     private String title;
 }

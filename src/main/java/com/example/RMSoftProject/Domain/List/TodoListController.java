@@ -27,4 +27,20 @@ public class TodoListController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
         }
     }
+
+    @PutMapping("/change")
+    public ResponseEntity<Object> updateTodoListTitle(
+            @RequestBody TodoListDto todoListDto
+    ) {
+        try {
+            todoListService.updateTodoListTitle( todoListDto);
+            return ResponseEntity.ok("TodoList 제목 수정에 성공했습니다.");
+        } catch (NoSuchElementException e) {
+            Map<String, String> response = new HashMap<>();
+            response.put("Error", e.getMessage());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+        }
+    }
+
+
 }
