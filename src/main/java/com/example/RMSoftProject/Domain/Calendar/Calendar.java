@@ -1,7 +1,6 @@
 package com.example.RMSoftProject.Domain.Calendar;
 
 
-import com.example.RMSoftProject.Domain.List.DoneList;
 import com.example.RMSoftProject.Domain.List.TodoList;
 import com.example.RMSoftProject.Domain.User.User;
 import jakarta.persistence.*;
@@ -18,8 +17,6 @@ public class Calendar {
 
     @OneToMany(mappedBy = "calendar", cascade = CascadeType.ALL)
     private List<TodoList> todoList;
-  @OneToMany(mappedBy = "calendar", cascade = CascadeType.ALL)
-    private List<DoneList> doneList;
 
     private String date;
 
