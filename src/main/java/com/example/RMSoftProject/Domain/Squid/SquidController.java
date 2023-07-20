@@ -33,4 +33,17 @@ public class SquidController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
         }
     }
+
+
+    @PutMapping("/{email}/squid")
+    public ResponseEntity<Object> updateSquidName(@PathVariable String email, @RequestBody SquidnameDto squidnameDto) {
+        try {
+            squidService.updateSquidName(email, squidnameDto);
+            return ResponseEntity.ok("문어 이름 변경에 성공했습니다.");
+        } catch (NoSuchElementException e) {
+            Map<String, String> response = new HashMap<>();
+            response.put("Error", e.getMessage());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+        }
+    }
 }

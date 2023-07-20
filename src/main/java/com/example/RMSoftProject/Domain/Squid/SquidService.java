@@ -27,4 +27,16 @@ public class SquidService {
         squidRepository.save(squid);
     }
 
+    public void updateSquidName(String email, SquidnameDto squidnameDto) {
+        User user = userRepository.findByEmail(email);
+        Squid squid = user.getSquid();
+
+        if (squid != null) {
+            squid.setSquidname(squidnameDto.getSquidname());
+            squidRepository.save(squid);
+        } else {
+            throw new NoSuchElementException("문어가 존재하지 않습니다.");
+        }
+    }
+
 }
